@@ -5,6 +5,42 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Olajide Olanipekun · Charis Music School — Music Lessons in Houston</title>
 <meta name="description" content="Learn piano, saxophone, guitar and more with Olajide Olanipekun of Charis Music School. In-person & online music lessons in Houston for all ages and levels." />
+
+<!-- Favicon (inline gold ♪ mark, no extra file) -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231a130b'/%3E%3Ctext x='16' y='24' font-size='22' text-anchor='middle' fill='%23d4af6b' font-family='Georgia,serif'%3E♪%3C/text%3E%3C/svg%3E" />
+
+<!-- Social share preview (Open Graph + Twitter) -->
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://samsondoski.github.io/charis-music/" />
+<meta property="og:title" content="Charis Music School · Music Lessons in Houston" />
+<meta property="og:description" content="Piano, saxophone, guitar, violin &amp; more — in-person & online lessons with Olajide Olanipekun for all ages and levels. New students get a free online trial." />
+<meta property="og:image" content="https://samsondoski.github.io/charis-music/images/conference.jpg" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Charis Music School · Music Lessons in Houston" />
+<meta name="twitter:description" content="Piano, saxophone, guitar, violin & more — in-person & online lessons for all ages. Free trial for new students." />
+<meta name="twitter:image" content="https://samsondoski.github.io/charis-music/images/conference.jpg" />
+
+<!-- SEO structured data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "MusicSchool",
+  "name": "Charis Music School",
+  "description": "In-person and online music lessons in Houston — piano, saxophone, guitar, violin and more, for all ages and levels.",
+  "url": "https://samsondoski.github.io/charis-music/",
+  "telephone": "+1-346-745-1361",
+  "email": "olajideolanipekun1@gmail.com",
+  "areaServed": "Houston, Texas",
+  "priceRange": "$",
+  "founder": { "@type": "Person", "name": "Dapo Olanipekun" },
+  "employee": { "@type": "Person", "name": "Olajide Olanipekun" },
+  "sameAs": [
+    "https://instagram.com/kd.jide",
+    "https://www.tiktok.com/@king_doski__"
+  ]
+}
+</script>
+
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
@@ -180,6 +216,21 @@
   .free-text h3 span{color:var(--gold-bright);font-weight:500}
   .free-text p{color:var(--muted);max-width:560px;margin:0}
   .free-offer .btn{flex-shrink:0}
+
+  /* pricing extras */
+  .pay{margin-top:20px}
+  .pay-label{font-size:.74rem;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;font-weight:600}
+  .pay-methods{display:flex;flex-wrap:wrap;gap:8px;margin-top:9px}
+  .pay-methods span{font-size:.82rem;padding:6px 12px;border:1px solid var(--line);border-radius:8px;
+    background:var(--bg-soft);color:var(--cream)}
+  .home-feature{margin-top:24px;display:grid;grid-template-columns:.95fr 1.05fr;gap:34px;align-items:center;
+    background:var(--card);border:1px solid var(--line);border-radius:20px;overflow:hidden}
+  .home-img img{width:100%;height:auto;display:block}
+  .home-text{padding:28px 30px 28px 4px}
+  .home-text h3{font-size:clamp(1.4rem,2.6vw,1.8rem);margin:8px 0 10px}
+  .home-text p{color:var(--muted)}
+  .foot-note{font-size:.82rem;color:var(--muted);margin-top:16px;line-height:1.55;max-width:860px}
+  .foot-note strong{color:var(--cream)}
 
   /* PRICING */
   .price-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:30px;align-items:stretch}
@@ -360,7 +411,7 @@
   }
 
   @media(max-width:880px){
-    .hero-grid,.about-grid,.resource,.price-grid,.inst-layout,.inquiry-layout,.form-grid{grid-template-columns:1fr}
+    .hero-grid,.about-grid,.resource,.price-grid,.inst-layout,.inquiry-layout,.form-grid,.home-feature{grid-template-columns:1fr}
     .cube-stage{margin-top:20px}
     .hero-photo{max-width:380px;margin:0 auto}
     .cards{grid-template-columns:1fr}
@@ -662,7 +713,7 @@
     <div class="section-head">
       <span class="eyebrow">Celebrity Connections</span>
       <h2>In good company</h2>
-      <p>Sharing moments with renowned gospel artists, ministers and music legends along the journey. <span style="color:var(--gold-bright)">Hover to tilt · drag to spin · release to hold · double-click to set free.</span></p>
+      <p>Sharing moments with renowned gospel artists, ministers and music legends along the journey.</p>
     </div>
     <div class="hl-grid">
       <div class="sphoto float3d"><img src="images/WhatsApp%20Image%202026-06-27%20at%2016.02.58.jpeg" alt="With Banky W" loading="lazy"><span class="cap">🎤 Banky W</span></div>
@@ -670,6 +721,7 @@
       <div class="sphoto float3d"><img src="images/WhatsApp%20Image%202026-06-27%20at%2016.02.11.jpeg" alt="With Tope Alabi and Soji Alabi" loading="lazy"><span class="cap">🎶 Tope &amp; Soji Alabi</span></div>
       <div class="sphoto float3d"><img src="images/WhatsApp%20Image%202026-06-27%20at%2015.59.08.jpeg" alt="With Prince Goke Bajowa" loading="lazy"><span class="cap">🎼 Prince Goke Bajowa</span></div>
     </div>
+    <p style="text-align:center;margin-top:40px;color:var(--cream);font-size:1.05rem">✨ A bonus of enrolling: <span class="gold">free connections to notable music icons and events.</span></p>
   </div>
 </section>
 
@@ -681,17 +733,26 @@
       <h2>Invest in real musicianship</h2>
       <p>Lessons built around your goals and your budget. Pay after each session, weekly, or monthly — whatever works for you.</p>
     </div>
+    <div class="free-offer">
+      <div class="free-text">
+        <span class="free-tag">🎉 New students</span>
+        <h3>Free online trial <span>· or in-person for just $10</span></h3>
+        <p>Try your very first session risk-free. Online trials are completely free; an in-person trial is a flat $10 — with <strong>no transport cost</strong>.</p>
+      </div>
+      <a class="btn btn-gold" href="#inquiry">Book your trial →</a>
+    </div>
+
     <div class="price-grid">
       <div class="price-card hl">
         <h3>Lesson Rate</h3>
-        <div class="rate">From&nbsp;$30 <small>/ hour</small></div>
-        <span class="discount">✨ Base rate — special discounts available</span>
+        <div class="rate">$30 <small>/ hour</small></div>
+        <span class="discount">✨ Referred by a friend? Get 5% off</span>
         <ul>
-          <li>In-person at your location, or online</li>
-          <li>All ages &amp; skill levels welcome</li>
+          <li><strong>Adults (18+):</strong> sessions average ~2 hours</li>
+          <li><strong>Kids (9–18):</strong> sessions average ~1 hour</li>
+          <li>In-person at your location, or online anywhere</li>
           <li>Discounts for groups &amp; siblings learning together</li>
-          <li>Online sessions have no transport charge</li>
-          <li>Flexible plans tailored after a quick chat</li>
+          <li>Online sessions never include a transport charge</li>
         </ul>
       </div>
       <div>
@@ -702,9 +763,25 @@
           <div class="pkg"><div><b>Twice a month</b><br><small>Flexible pace</small></div></div>
           <div class="pkg"><div><b>Once a month</b><br><small>Light touch</small></div></div>
         </div>
-        <p style="font-size:.82rem;color:var(--muted);margin-top:14px">Other flexible arrangements available depending on your goals.</p>
+        <div class="pay">
+          <span class="pay-label">Payments accepted</span>
+          <div class="pay-methods"><span>Zelle</span><span>Cash App</span><span>PayPal</span><span>Cash</span></div>
+        </div>
+        <p style="font-size:.82rem;color:var(--muted);margin-top:14px">Pay after each session, weekly, or monthly — whatever works for you.</p>
       </div>
     </div>
+
+    <div class="home-feature">
+      <div class="home-img"><img src="images/WhatsApp%20Image%202026-06-27%20at%2015.50.23.jpeg" alt="Learning music at home with keyboard, bass and amp" loading="lazy"></div>
+      <div class="home-text">
+        <span class="eyebrow">Comfort of Your Home</span>
+        <h3>Learn right at home<span class="gold">*</span></h3>
+        <p>Prefer in-person? I bring the lessons to you — learn in the comfort of your own home, on your own instrument, at your own pace. Perfect for kids and busy schedules.</p>
+      </div>
+    </div>
+
+    <p class="foot-note"><strong>*</strong> Transport costs may be incurred for in-person home sessions depending on your location. Online sessions never include a transport charge.</p>
+    <p class="foot-note"><strong>Cancellation policy:</strong> please give at least 24 hours' notice to reschedule or cancel a session. Sessions cancelled with less notice — or missed without notice — may be charged in full. Makeup / rain-check sessions can be arranged where possible.</p>
   </div>
 </section>
 
