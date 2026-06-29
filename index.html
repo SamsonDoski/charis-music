@@ -401,6 +401,11 @@
   .field select option{background:#16110c;color:var(--cream)}
   .form-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:22px}
   .form-note{font-size:.78rem;color:var(--muted);margin-top:14px}
+  .checks{display:grid;grid-template-columns:repeat(2,1fr);gap:8px 16px;margin-top:4px}
+  .check{display:flex;align-items:center;gap:9px;font-size:.92rem;color:var(--cream);cursor:pointer;
+    padding:8px 10px;border:1px solid var(--line);border-radius:9px;background:var(--bg-soft);transition:.15s}
+  .check:hover{border-color:var(--gold)}
+  .check input{width:16px;height:16px;accent-color:var(--gold);cursor:pointer}
 
   @media (prefers-reduced-motion: reduce){
     .reveal{opacity:1;transform:none;transition:none}
@@ -411,7 +416,7 @@
   }
 
   @media(max-width:880px){
-    .hero-grid,.about-grid,.resource,.price-grid,.inst-layout,.inquiry-layout,.form-grid,.home-feature{grid-template-columns:1fr}
+    .hero-grid,.about-grid,.resource,.price-grid,.inst-layout,.inquiry-layout,.form-grid,.home-feature,.checks{grid-template-columns:1fr}
     .cube-stage{margin-top:20px}
     .hero-photo{max-width:380px;margin:0 auto}
     .cards{grid-template-columns:1fr}
@@ -439,6 +444,7 @@
         <a href="#about">About</a>
         <a href="#resources">Resources</a>
         <a href="#pricing">Pricing</a>
+        <a href="#booking">Perform</a>
         <a class="btn btn-gold" href="#inquiry">Book a Lesson</a>
       </div>
       <button class="menu-toggle" onclick="document.getElementById('nav').classList.toggle('open')">☰</button>
@@ -617,7 +623,6 @@
     <div class="section-head" style="margin:0 auto 36px;text-align:center">
       <span class="eyebrow" style="justify-content:center">In Motion</span>
       <h2 style="font-size:clamp(1.8rem,3.5vw,2.5rem)">Sights from the journey</h2>
-      <p style="margin:0 auto">Silent clips from lessons, rehearsals and live moments — looping on their own.</p>
     </div>
     <div class="clip-grid">
       <div class="clip-card"><video class="reel" muted loop playsinline preload="metadata"><source src="images/IMG_9468%20-%20Trim.mp4" type="video/mp4" /></video></div>
@@ -701,8 +706,8 @@
   <div class="wrap showreel-content">
     <span class="eyebrow" style="justify-content:center">Live Showreel</span>
     <h2>See &amp; hear it live</h2>
-    <p>A glimpse of the music in action — tap the button to turn the sound on.</p>
-    <a class="btn btn-gold" href="#inquiry">Book a Performance →</a>
+    <p>A glimpse of the music in action.</p>
+    <a class="btn btn-gold" href="#booking">Book a Performance →</a>
   </div>
   <button class="sound-toggle" id="soundToggle" aria-label="Turn sound on" aria-pressed="false">🔇 <span>Sound off</span></button>
 </section>
@@ -822,11 +827,59 @@
         </div>
         <div class="form-actions">
           <button type="button" class="btn btn-wa" id="f_wa">🟢 Send via WhatsApp</button>
-          <button type="button" class="btn btn-gold" id="f_email_btn">✉ Send via Email</button>
+          <button type="button" class="btn btn-gold" id="f_sms">💬 Send via Text / iMessage</button>
+          <button type="button" class="btn btn-ghost" id="f_email_btn">✉ Send via Email</button>
         </div>
-        <p class="form-note">Submitting opens a pre-filled WhatsApp or email message addressed to me — nothing is stored on this website.</p>
+        <p class="form-note">Submitting opens a pre-filled WhatsApp, text/iMessage or email message addressed to me — nothing is stored on this website.</p>
       </form>
     </div>
+  </div>
+</section>
+
+<!-- PERFORMANCE BOOKING -->
+<section id="booking" class="alt">
+  <div class="wrap">
+    <div class="section-head" style="margin:0 auto 44px;text-align:center">
+      <span class="eyebrow" style="justify-content:center">Book a Performance</span>
+      <h2>Live music for your special moment</h2>
+      <p style="margin:0 auto">Weddings, birthdays, church services, funerals and more — tell me about your event and I'll bring the music to life.</p>
+    </div>
+    <form class="form-card" id="bookingForm" onsubmit="return false" style="max-width:820px;margin:0 auto">
+      <div class="form-grid">
+        <div class="field"><label for="p_name">Your name *</label><input id="p_name" type="text" placeholder="Full name" autocomplete="name" required></div>
+        <div class="field"><label for="p_phone">Phone</label><input id="p_phone" type="tel" placeholder="+1 (346) 000-0000" autocomplete="tel"></div>
+        <div class="field"><label for="p_email">Email</label><input id="p_email" type="email" placeholder="you@email.com" autocomplete="email"></div>
+        <div class="field"><label for="p_method">Preferred contact</label><select id="p_method">
+          <option>WhatsApp</option><option>Call</option><option>Text / iMessage</option><option>Email</option></select></div>
+        <div class="field"><label for="p_event">Type of event</label><select id="p_event">
+          <option>Birthday surprise</option><option>Gospel gig</option><option>Church ministration / service</option>
+          <option>Funeral music</option><option>Organ (Hymns playing)</option><option>Wedding</option><option>Other</option></select></div>
+        <div class="field"><label for="p_date">Date of event</label><input id="p_date" type="date"></div>
+        <div class="field full"><label for="p_location">Event location / venue</label><input id="p_location" type="text" placeholder="City &amp; venue, if known"></div>
+        <div class="field full">
+          <label>Instrument(s) needed — select all that apply</label>
+          <div class="checks">
+            <label class="check"><input type="checkbox" class="pf-instr" value="Piano / Keyboard"> Piano / Keyboard</label>
+            <label class="check"><input type="checkbox" class="pf-instr" value="Organ (Hymns)"> Organ (Hymns)</label>
+            <label class="check"><input type="checkbox" class="pf-instr" value="Alto Saxophone"> Alto Saxophone</label>
+            <label class="check"><input type="checkbox" class="pf-instr" value="Tenor Saxophone"> Tenor Saxophone</label>
+            <label class="check"><input type="checkbox" class="pf-instr" value="Soprano Saxophone"> Soprano Saxophone</label>
+            <label class="check"><input type="checkbox" class="pf-instr" value="Lead Electric Guitar"> Lead Electric Guitar</label>
+            <label class="check"><input type="checkbox" class="pf-instr" value="Bass Guitar"> Bass Guitar</label>
+            <label class="check"><input type="checkbox" class="pf-instr" value="Acoustic Guitar"> Acoustic Guitar</label>
+            <label class="check"><input type="checkbox" class="pf-instr" value="Violin"> Violin</label>
+            <label class="check"><input type="checkbox" class="pf-instr" value="Not sure / your recommendation"> Not sure — recommend</label>
+          </div>
+        </div>
+        <div class="field full"><label for="p_msg">Event details / song requests</label><textarea id="p_msg" placeholder="e.g. surprise for my mum's 50th, I'd love a specific hymn, expected number of guests…"></textarea></div>
+      </div>
+      <div class="form-actions">
+        <button type="button" class="btn btn-wa" id="p_wa">🟢 Send via WhatsApp</button>
+        <button type="button" class="btn btn-gold" id="p_sms">💬 Send via Text / iMessage</button>
+        <button type="button" class="btn btn-ghost" id="p_email_btn">✉ Send via Email</button>
+      </div>
+      <p class="form-note">Submitting opens a pre-filled WhatsApp, text/iMessage or email message addressed to me — nothing is stored on this website.</p>
+    </form>
   </div>
 </section>
 
@@ -927,8 +980,28 @@
     ].filter(function(r){ return r[1]; }).map(function(r){ return r[0]+': '+r[1]; });
     return 'New lesson inquiry — Charis Music School\n\n'+rows.join('\n');
   }
+  var fSMS=doc.getElementById('f_sms');
   if(fWA) fWA.addEventListener('click',function(){ var t=buildInquiry(); if(t) window.open('https://wa.me/13467451361?text='+encodeURIComponent(t),'_blank'); });
+  if(fSMS) fSMS.addEventListener('click',function(){ var t=buildInquiry(); if(t) window.location.href='sms:+13467451361?body='+encodeURIComponent(t); });
   if(fEM) fEM.addEventListener('click',function(){ var t=buildInquiry(); if(t){ var nm=(doc.getElementById('f_name').value||'New student'); window.location.href='mailto:olajideolanipekun1@gmail.com?subject='+encodeURIComponent('Lesson inquiry — '+nm)+'&body='+encodeURIComponent(t); } });
+
+  /* ---------- Performance booking form → pre-filled WhatsApp / text / email ---------- */
+  function buildPerf(){
+    function v(id){ var e=doc.getElementById(id); return e?e.value.trim():''; }
+    var name=v('p_name');
+    if(!name){ var nf=doc.getElementById('p_name'); if(nf) nf.focus(); alert('Please enter your name so I know who to reply to.'); return null; }
+    var instr=[].slice.call(doc.querySelectorAll('.pf-instr:checked')).map(function(c){ return c.value; }).join(', ');
+    var rows=[
+      ['Name',name],['Phone',v('p_phone')],['Email',v('p_email')],['Preferred contact',v('p_method')],
+      ['Event type',v('p_event')],['Event date',v('p_date')],['Location',v('p_location')],
+      ['Instruments needed',instr],['Details',v('p_msg')]
+    ].filter(function(r){ return r[1]; }).map(function(r){ return r[0]+': '+r[1]; });
+    return 'New performance booking — Charis Music School\n\n'+rows.join('\n');
+  }
+  var pWA=doc.getElementById('p_wa'), pSMS=doc.getElementById('p_sms'), pEM=doc.getElementById('p_email_btn');
+  if(pWA) pWA.addEventListener('click',function(){ var t=buildPerf(); if(t) window.open('https://wa.me/13467451361?text='+encodeURIComponent(t),'_blank'); });
+  if(pSMS) pSMS.addEventListener('click',function(){ var t=buildPerf(); if(t) window.location.href='sms:+13467451361?body='+encodeURIComponent(t); });
+  if(pEM) pEM.addEventListener('click',function(){ var t=buildPerf(); if(t){ var nm=(doc.getElementById('p_name').value||'New booking'); window.location.href='mailto:olajideolanipekun1@gmail.com?subject='+encodeURIComponent('Performance booking — '+nm)+'&body='+encodeURIComponent(t); } });
 
   /* ---------- Fade/blur each photo in as it loads (reliable, layout-independent) ---------- */
   var photos=[].slice.call(doc.querySelectorAll('.gphoto img,.sphoto img,.hero-photo img,.about-photo img,.manuals-photo'));
