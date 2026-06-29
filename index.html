@@ -555,7 +555,7 @@
     <div class="section-head" style="margin:0 auto 36px;text-align:center">
       <span class="eyebrow" style="justify-content:center">In Motion</span>
       <h2 style="font-size:clamp(1.8rem,3.5vw,2.5rem)">Sights from the journey</h2>
-      <p style="margin:0 auto">Clips from lessons, rehearsals and live moments — tap any to play with sound.</p>
+      <p style="margin:0 auto">Silent clips from lessons, rehearsals and live moments — looping on their own.</p>
     </div>
     <div class="clip-grid">
       <div class="clip-card"><video class="reel" muted loop playsinline preload="metadata"><source src="images/IMG_9468%20-%20Trim.mp4" type="video/mp4" /></video></div>
@@ -974,8 +974,8 @@
   if(floaters.length){
     var fs=floaters.map(function(el){
       return {el:el,
-              ampX:4+Math.random()*3,           // small horizontal so neighbours never collide
-              ampY:24+Math.random()*16,         // large vertical travel (wanders point A → B)
+              ampX:4+Math.random()*5,           // small horizontal so neighbours never collide
+              ampY:32+Math.random()*24,         // large vertical travel (wanders point A → B)
               s1:0.5+Math.random()*0.4, s2:0.27+Math.random()*0.25,
               p1:Math.random()*6.28, p2:Math.random()*6.28, p3:Math.random()*6.28, p4:Math.random()*6.28,
               clock:Math.random()*40, px:0, py:0,
