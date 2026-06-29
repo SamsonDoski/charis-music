@@ -169,6 +169,17 @@
   .book3{background:linear-gradient(160deg,#d8c4a4,#b39e7c);transform:rotate(13deg) translateX(58px)}
   .btn-amazon{background:#ff9900;color:#1a130b}
   .btn-amazon:hover{transform:translateY(-2px);box-shadow:0 12px 28px -8px rgba(255,153,0,.5)}
+  /* free manual offer banner */
+  .free-offer{margin-top:24px;display:flex;align-items:center;justify-content:space-between;gap:24px;
+    flex-wrap:wrap;padding:26px 30px;border-radius:20px;
+    background:linear-gradient(135deg,rgba(212,175,107,.2),rgba(201,123,99,.16));
+    border:1px solid var(--gold)}
+  .free-tag{display:inline-block;font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;font-weight:700;
+    color:#1a130b;background:var(--gold-bright);padding:5px 12px;border-radius:100px;margin-bottom:10px}
+  .free-text h3{font-size:1.5rem;margin-bottom:6px}
+  .free-text h3 span{color:var(--gold-bright);font-weight:500}
+  .free-text p{color:var(--muted);max-width:560px;margin:0}
+  .free-offer .btn{flex-shrink:0}
 
   /* PRICING */
   .price-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:30px;align-items:stretch}
@@ -564,29 +575,37 @@
   </div>
 </section>
 
-<!-- RESOURCES / AMAZON -->
+<!-- RESOURCES / MANUALS -->
 <section id="resources">
   <div class="wrap">
     <div class="resource">
       <div>
         <span class="eyebrow">Learn On Your Own Time</span>
-        <h2>Published music manuals on Amazon</h2>
-        <p>Charis Music School's founder, Dapo Olanipekun, has written multiple manuals that break difficult music concepts into simple, easy-to-follow lessons. Perfect to pair with your training — or to start today.</p>
+        <h2>Music manuals by Dapo Olanipekun</h2>
+        <p>Charis Music School's founder, Dapo Olanipekun, has written multiple manuals — <strong>Simplified Music</strong>, <strong>Song Bank</strong>, <strong>Simplified Guitar</strong> and more — that break difficult music concepts into simple, easy-to-follow lessons.</p>
+        <p style="color:var(--cream)">📩 <strong>Softcopy access by email — $50</strong> &nbsp;·&nbsp; 📦 <strong>Hardcopy delivered worldwide via DHL</strong></p>
         <div class="btn-row">
-          <a class="btn btn-amazon" href="https://www.amazon.com/stores/author/B089H2X2NQ" target="_blank" rel="noopener">📚 Browse the Manuals on Amazon →</a>
+          <a class="btn btn-gold" href="https://wa.me/13467451361?text=Hi%20Olajide%2C%20I%27d%20like%20to%20get%20a%20copy%20of%20the%20music%20manuals." target="_blank" rel="noopener">📩 Request a manual</a>
           <a class="btn btn-ghost" href="https://www.superprof.com/undergraduate-computer-science-giving-online-music-lessons-piano-guitar-and-saxophone-based-houston-years.html" target="_blank" rel="noopener">View my Superprof profile</a>
         </div>
       </div>
       <div class="book-photo-wrap">
-        <a href="https://www.amazon.com/stores/author/B089H2X2NQ" target="_blank" rel="noopener" style="display:block;border-radius:14px">
-          <img class="manuals-photo" src="images/manuals.jpg" alt="Simplified Music, Song Bank and Simplified Guitar manuals by Dapo Olanipekun" onerror="this.closest('.book-photo-wrap').style.display='none';document.getElementById('book-stack').style.display='flex'" />
-        </a>
+        <img class="manuals-photo" src="images/manuals.jpg" alt="Simplified Music, Song Bank and Simplified Guitar manuals by Dapo Olanipekun" onerror="this.closest('.book-photo-wrap').style.display='none';document.getElementById('book-stack').style.display='flex'" />
       </div>
       <div class="book-stack" id="book-stack" style="display:none">
         <div class="book book1"><span><b>♪</b>Music Theory Made Simple</span></div>
         <div class="book book3"><span><b>🎷</b>Ear Training</span></div>
         <div class="book book2"><span><b>🎹</b>Master Your Instrument</span></div>
       </div>
+    </div>
+
+    <div class="free-offer">
+      <div class="free-text">
+        <span class="free-tag">🎁 FREE · normally $50</span>
+        <h3>Free copy: Song Bank <span>(Children's Songs)</span></h3>
+        <p>by Dapo Olanipekun — for your child, or your future child! Just fill out a short form and your free copy is on its way.</p>
+      </div>
+      <a class="btn btn-gold" href="https://forms.gle/ja2vwtPdqEywXN9B8" target="_blank" rel="noopener">🎁 Grab your FREE copy →</a>
     </div>
   </div>
 </section>
@@ -755,7 +774,7 @@
       <div class="socials">
         <a href="https://instagram.com/kd.jide" target="_blank" rel="noopener">📸 Instagram · @kd.jide</a>
         <a href="https://www.tiktok.com/@king_doski__" target="_blank" rel="noopener">🎵 TikTok · @king_doski__</a>
-        <a href="https://www.amazon.com/stores/author/B089H2X2NQ" target="_blank" rel="noopener">📚 Amazon Manuals</a>
+        <a href="#resources">📚 Music Manuals</a>
         <a href="https://www.superprof.com/undergraduate-computer-science-giving-online-music-lessons-piano-guitar-and-saxophone-based-houston-years.html" target="_blank" rel="noopener">🎓 Superprof</a>
       </div>
     </div>
@@ -767,7 +786,7 @@
     <div class="brand" style="display:flex"><span class="mark">♪</span> Charis Music School</div>
     <p>Olajide Olanipekun · Music Lessons in Houston, TX · Piano · Saxophone · Guitar · Violin &amp; more</p>
     <p style="margin-top:8px">📍 Houston, Texas · 📞 <a href="tel:+13467451361">+1 (346) 745-1361</a> · 🟢 <a href="https://wa.me/13467451361" target="_blank" rel="noopener">WhatsApp</a> · 💬 <a href="sms:+13467451361">Text</a></p>
-    <p style="margin-top:8px">📸 <a href="https://instagram.com/kd.jide" target="_blank" rel="noopener">@kd.jide</a> · 🎵 <a href="https://www.tiktok.com/@king_doski__" target="_blank" rel="noopener">@king_doski__</a> · 📚 <a href="https://www.amazon.com/stores/author/B089H2X2NQ" target="_blank" rel="noopener">Amazon Manuals</a> · 🎓 <a href="https://www.superprof.com/undergraduate-computer-science-giving-online-music-lessons-piano-guitar-and-saxophone-based-houston-years.html" target="_blank" rel="noopener">Superprof</a></p>
+    <p style="margin-top:8px">📸 <a href="https://instagram.com/kd.jide" target="_blank" rel="noopener">@kd.jide</a> · 🎵 <a href="https://www.tiktok.com/@king_doski__" target="_blank" rel="noopener">@king_doski__</a> · 📚 <a href="#resources">Music Manuals</a> · 🎓 <a href="https://www.superprof.com/undergraduate-computer-science-giving-online-music-lessons-piano-guitar-and-saxophone-based-houston-years.html" target="_blank" rel="noopener">Superprof</a></p>
     <p style="margin-top:14px;opacity:.6;font-size:.8rem">© <span id="yr"></span> Charis Music School. All rights reserved.</p>
   </div>
 </footer>
