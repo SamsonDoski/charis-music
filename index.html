@@ -442,6 +442,10 @@
 
   @media(max-width:880px){
     .hero-grid,.about-grid,.resource,.price-grid,.inst-layout,.inquiry-layout,.form-grid,.home-feature,.checks,.sched-steps,.deposit-grid{grid-template-columns:1fr}
+    /* mobile: make the calendar a scrollable pane so no dates get cut off */
+    .cal-embed{height:80vh;min-height:0}
+    .cal-embed>div{height:100%;min-height:0;overflow:auto;-webkit-overflow-scrolling:touch}
+    .cal-embed::after{display:none}
     .cube-stage{margin-top:20px}
     .hero-photo{max-width:380px;margin:0 auto}
     .cards{grid-template-columns:1fr}
