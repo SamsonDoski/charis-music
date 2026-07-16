@@ -1332,11 +1332,9 @@ Cal.ns["music-lesson"]("ui", {"theme":"dark","hideEventTypeDetails":false,"layou
 /* ---------- Transport cost estimator (client-side, free OpenStreetMap geocoding) ----------
    Adjust these numbers to your real travel pricing: */
 (function(){
-  var BASE   = {lat:29.7604, lng:-95.3698}; // your base area (default: central Houston) — set to your ZIP/area
-  var RATE   = 0.70;   // $ per driving mile (round trip)
+  var BASE   = {lat:29.7436, lng:-95.7558}; // ZIP 77450 (Katy, TX)
+  var PERMILE= 5;      // $ per driving mile, one way to you (≈ $30 for 6 miles)
   var ROAD   = 1.3;    // straight-line -> driving distance factor
-  var FREE_MI= 5;      // free within this one-way radius (miles)
-  var MINCHG = 5;      // minimum charge once outside the free radius
 
   var btn=document.getElementById('te-btn');
   var inp=document.getElementById('te-addr');
@@ -1359,15 +1357,14 @@ Cal.ns["music-lesson"]("ui", {"theme":"dark","hideEventTypeDetails":false,"layou
       .then(function(d){
         if(!d || !d.length){ out.innerHTML='<span class="te-note">Couldn’t find that location — try a full address or ZIP.</span>'; return; }
         var client={lat:parseFloat(d[0].lat), lng:parseFloat(d[0].lon)};
-        var oneway=miles(BASE, client);
-        var cost, roundMi=Math.round(oneway*ROAD*2);
-        if(oneway<=FREE_MI){
-          out.innerHTML='<span class="big">Free 🎉</span><br><span class="te-note">You’re within my free-travel zone — no transport charge.</span>';
+        var driveMi=miles(BASE, client)*ROAD;
+        var nMi=Math.round(driveMi);
+        var cost=Math.round(driveMi*PERMILE/5)*5; // nearest $5
+        if(cost<=0){
+          out.innerHTML='<span class="big">$0</span> <span class="te-note">— you’re right by me, no transport charge.</span>';
           return;
         }
-        cost=Math.max(MINCHG, oneway*ROAD*2*RATE);
-        cost=Math.round(cost);
-        out.innerHTML='≈ <span class="big">$'+cost+'</span> round-trip transport <span class="te-note">(about '+roundMi+' driving miles). This is an estimate — the exact amount is confirmed before your first session.</span>';
+        out.innerHTML='≈ <span class="big">$'+cost+'</span> transport <span class="te-note">(about '+nMi+' driving miles each way). This is an estimate — the exact amount is confirmed before your first session.</span>';
       })
       .catch(function(){ out.innerHTML='<span class="te-note">Network issue — please try again, or just message me your address.</span>'; });
   }
