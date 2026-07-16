@@ -231,6 +231,15 @@
   .home-text{padding:28px 30px 28px 4px}
   .home-text h3{font-size:clamp(1.4rem,2.6vw,1.8rem);margin:8px 0 10px}
   .home-text p{color:var(--muted)}
+  .transport-est{margin-top:18px}
+  .transport-est label{display:block;font-size:.82rem;color:var(--gold-bright);font-weight:600;margin-bottom:8px}
+  .te-row{display:flex;gap:10px;flex-wrap:wrap}
+  .te-row input{flex:1;min-width:180px;background:var(--bg-soft);border:1px solid var(--line);border-radius:10px;
+    padding:11px 13px;color:var(--cream);font-family:inherit;font-size:.95rem}
+  .te-row input:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 3px rgba(212,175,107,.16)}
+  .te-result{margin-top:12px;font-size:.95rem;color:var(--cream);min-height:1.2em}
+  .te-result .big{font-family:'Fraunces',serif;font-size:1.5rem;color:var(--gold-bright)}
+  .te-note{font-size:.78rem;color:var(--muted);margin-top:6px}
   .foot-note{font-size:.82rem;color:var(--muted);margin-top:16px;line-height:1.55;max-width:860px}
   .foot-note strong{color:var(--cream)}
 
@@ -823,6 +832,14 @@
         <span class="eyebrow">Comfort of Your Home</span>
         <h3>Learn right at home<span class="gold">*</span></h3>
         <p>Prefer in-person? I bring the lessons to you — learn in the comfort of your own home, on your own instrument, at your own pace. Perfect for kids and busy schedules.</p>
+        <div class="transport-est">
+          <label for="te-addr">🚗 Estimate your transport cost</label>
+          <div class="te-row">
+            <input id="te-addr" type="text" placeholder="Enter your address or ZIP (Houston area)" />
+            <button type="button" id="te-btn" class="btn btn-gold">Estimate</button>
+          </div>
+          <div id="te-result" class="te-result"></div>
+        </div>
       </div>
     </div>
 
@@ -841,31 +858,31 @@
     </div>
     <div class="book-tabs">
       <button type="button" class="book-tab active" data-cal="charismusic/music-lesson-free-online-trial-session" data-dep="0" data-note="🎉 New students — your online trial is completely free. Just pick a time; no payment needed.">🎹 Free Online Trial</button>
-      <button type="button" class="book-tab" data-cal="charismusic/music-lesson-free-in-person-trial-session" data-dep="0" data-note="In-person trial is $10/hr plus transport based on your location. Pick a time and I'll confirm.">🏠 In-Person Trial · $10/hr</button>
-      <button type="button" class="book-tab" data-cal="charismusic/music-lesson-sessions-for-returning-student" data-dep="1" data-note="Returning students — book your regular online or in-person session. Confirmed with a $10 security deposit (send it below after picking a time).">🔁 Returning Session · $10 deposit</button>
+      <button type="button" class="book-tab" data-cal="charismusic/music-lesson-free-in-person-trial-session" data-dep="1" data-pay="Pay your $10 in-person trial" data-note="In-person trial is $10/hr plus transport based on your location. Pick a time, then pay your $10 below.">🏠 In-Person Trial · $10/hr</button>
+      <button type="button" class="book-tab" data-cal="charismusic/music-lesson-sessions-for-returning-student" data-dep="1" data-pay="Send your $10 security deposit to confirm" data-note="Returning students — book your regular online or in-person session. Confirmed with a $10 security deposit (send it below after picking a time).">🔁 Returning Session · $10 deposit</button>
     </div>
     <p class="book-note" id="book-note">🎉 New students — your online trial is completely free. Just pick a time; no payment needed.</p>
     <div class="cal-embed"><div id="cal-inline"></div></div>
     <div id="deposit-block" style="display:none">
-      <h3 style="text-align:center;margin:34px 0 4px;font-size:1.45rem">Send your $10 security deposit to confirm</h3>
-      <p style="text-align:center;color:var(--muted);margin:0 auto 22px;font-size:.92rem;max-width:560px">Add your full name in the note so I can match it to your booking. This secures your slot.</p>
+      <h3 id="dep-head" style="text-align:center;margin:34px 0 4px;font-size:1.45rem">Send your $10 security deposit to confirm</h3>
+      <p style="text-align:center;color:var(--muted);margin:0 auto 22px;font-size:.92rem;max-width:560px">Add your full name in the note so I can match it to your booking.</p>
       <div class="deposit-grid">
         <div class="dep-card">
           <div class="dep-icon">💚</div>
           <h3>Cash App</h3>
-          <p>Tap to send your $10 deposit to <strong>$KingDoski02</strong> — add your name in the note.</p>
+          <p>Tap to send $10 to <strong>$KingDoski02</strong> — add your name in the note.</p>
           <a class="btn btn-cashapp" href="https://cash.app/$KingDoski02" target="_blank" rel="noopener">Pay $10 on Cash App →</a>
         </div>
         <div class="dep-card">
           <div class="dep-icon">💳</div>
           <h3>PayPal</h3>
-          <p>Tap to send your $10 deposit — the amount is pre-filled. Add your name in the note.</p>
+          <p>Tap to send $10 — the amount is pre-filled. Add your name in the note.</p>
           <a class="btn btn-paypal" href="https://paypal.me/olajideolanipekun/10" target="_blank" rel="noopener">Pay $10 with PayPal →</a>
         </div>
         <div class="dep-card">
           <div class="dep-icon">🏦</div>
           <h3>Zelle</h3>
-          <p>Send your $10 deposit via Zelle in your banking app to:</p>
+          <p>Send $10 via Zelle in your banking app to:</p>
           <div class="zelle-num">+1 (346) 745-1361</div>
           <p class="dep-small">Please add your full name in the memo.</p>
         </div>
@@ -884,11 +901,13 @@ Cal.ns["music-lesson"]("ui", {"theme":"dark","hideEventTypeDetails":false,"layou
   var dep=document.getElementById('deposit-block');
   var note=document.getElementById('book-note');
   function loadCal(link){ var el=document.getElementById('cal-inline'); if(!el) return; el.innerHTML=''; Cal.ns["music-lesson"]("inline", { elementOrSelector:"#cal-inline", config:{"layout":"month_view","theme":"dark"}, calLink: link }); }
+  var depHead=document.getElementById('dep-head');
   tabs.forEach(function(t){ t.addEventListener('click', function(){
     tabs.forEach(function(x){ x.classList.remove('active'); }); t.classList.add('active');
     loadCal(t.getAttribute('data-cal'));
     if(note) note.textContent=t.getAttribute('data-note');
     if(dep) dep.style.display = t.getAttribute('data-dep')==='1' ? 'block' : 'none';
+    if(depHead && t.getAttribute('data-pay')) depHead.textContent=t.getAttribute('data-pay');
   }); });
 })();
 </script>
@@ -1307,6 +1326,53 @@ Cal.ns["music-lesson"]("ui", {"theme":"dark","hideEventTypeDetails":false,"layou
       requestAnimationFrame(frame);
     })(0);
   }
+})();
+</script>
+<script type="text/javascript">
+/* ---------- Transport cost estimator (client-side, free OpenStreetMap geocoding) ----------
+   Adjust these numbers to your real travel pricing: */
+(function(){
+  var BASE   = {lat:29.7604, lng:-95.3698}; // your base area (default: central Houston) — set to your ZIP/area
+  var RATE   = 0.70;   // $ per driving mile (round trip)
+  var ROAD   = 1.3;    // straight-line -> driving distance factor
+  var FREE_MI= 5;      // free within this one-way radius (miles)
+  var MINCHG = 5;      // minimum charge once outside the free radius
+
+  var btn=document.getElementById('te-btn');
+  var inp=document.getElementById('te-addr');
+  var out=document.getElementById('te-result');
+  if(!btn||!inp||!out) return;
+
+  function miles(a,b){
+    var R=3958.8, toR=Math.PI/180;
+    var dLat=(b.lat-a.lat)*toR, dLng=(b.lng-a.lng)*toR;
+    var la1=a.lat*toR, la2=b.lat*toR;
+    var x=Math.sin(dLat/2)*Math.sin(dLat/2)+Math.cos(la1)*Math.cos(la2)*Math.sin(dLng/2)*Math.sin(dLng/2);
+    return R*2*Math.atan2(Math.sqrt(x), Math.sqrt(1-x));
+  }
+  function estimate(){
+    var q=inp.value.trim();
+    if(!q){ out.innerHTML='<span class="te-note">Enter your address or ZIP first.</span>'; return; }
+    out.innerHTML='<span class="te-note">Calculating…</span>';
+    fetch('https://nominatim.openstreetmap.org/search?format=jsonv2&limit=1&countrycodes=us&q='+encodeURIComponent(q))
+      .then(function(r){ return r.json(); })
+      .then(function(d){
+        if(!d || !d.length){ out.innerHTML='<span class="te-note">Couldn’t find that location — try a full address or ZIP.</span>'; return; }
+        var client={lat:parseFloat(d[0].lat), lng:parseFloat(d[0].lon)};
+        var oneway=miles(BASE, client);
+        var cost, roundMi=Math.round(oneway*ROAD*2);
+        if(oneway<=FREE_MI){
+          out.innerHTML='<span class="big">Free 🎉</span><br><span class="te-note">You’re within my free-travel zone — no transport charge.</span>';
+          return;
+        }
+        cost=Math.max(MINCHG, oneway*ROAD*2*RATE);
+        cost=Math.round(cost);
+        out.innerHTML='≈ <span class="big">$'+cost+'</span> round-trip transport <span class="te-note">(about '+roundMi+' driving miles). This is an estimate — the exact amount is confirmed before your first session.</span>';
+      })
+      .catch(function(){ out.innerHTML='<span class="te-note">Network issue — please try again, or just message me your address.</span>'; });
+  }
+  btn.addEventListener('click', estimate);
+  inp.addEventListener('keydown', function(e){ if(e.key==='Enter'){ e.preventDefault(); estimate(); } });
 })();
 </script>
 </body>
