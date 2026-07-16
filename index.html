@@ -231,15 +231,18 @@
   .home-text{padding:28px 30px 28px 4px}
   .home-text h3{font-size:clamp(1.4rem,2.6vw,1.8rem);margin:8px 0 10px}
   .home-text p{color:var(--muted)}
-  .transport-est{margin-top:18px}
-  .transport-est label{display:block;font-size:.82rem;color:var(--gold-bright);font-weight:600;margin-bottom:8px}
-  .te-row{display:flex;gap:10px;flex-wrap:wrap}
-  .te-row input{flex:1;min-width:180px;background:var(--bg-soft);border:1px solid var(--line);border-radius:10px;
-    padding:11px 13px;color:var(--cream);font-family:inherit;font-size:.95rem}
-  .te-row input:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 3px rgba(212,175,107,.16)}
-  .te-result{margin-top:12px;font-size:.95rem;color:var(--cream);min-height:1.2em}
-  .te-result .big{font-family:'Fraunces',serif;font-size:1.5rem;color:var(--gold-bright)}
-  .te-note{font-size:.78rem;color:var(--muted);margin-top:6px}
+  .est-tile{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:30px;margin:18px 0}
+  .est-tile h3{font-size:1.4rem;margin-bottom:6px}
+  .est-tile>p{color:var(--muted);margin-bottom:18px;font-size:.95rem}
+  .est-form{display:grid;grid-template-columns:2fr 1fr 1fr;gap:12px}
+  .est-form input{background:var(--bg-soft);border:1px solid var(--line);border-radius:10px;
+    padding:11px 13px;color:var(--cream);font-family:inherit;font-size:.95rem;width:100%}
+  .est-form input:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 3px rgba(212,175,107,.16)}
+  .est-form .full{grid-column:1/-1}
+  .est-form .btn.full{justify-self:start}
+  .te-result{margin-top:14px;font-size:.95rem;color:var(--cream);min-height:1.2em}
+  .te-result .big{font-family:'Fraunces',serif;font-size:1.6rem;color:var(--gold-bright)}
+  .te-note{font-size:.8rem;color:var(--muted)}
   .foot-note{font-size:.82rem;color:var(--muted);margin-top:16px;line-height:1.55;max-width:860px}
   .foot-note strong{color:var(--cream)}
 
@@ -459,7 +462,7 @@
   }
 
   @media(max-width:880px){
-    .hero-grid,.about-grid,.resource,.price-grid,.inst-layout,.inquiry-layout,.form-grid,.home-feature,.checks,.sched-steps,.deposit-grid{grid-template-columns:1fr}
+    .hero-grid,.about-grid,.resource,.price-grid,.inst-layout,.inquiry-layout,.form-grid,.home-feature,.checks,.sched-steps,.deposit-grid,.est-form{grid-template-columns:1fr}
     /* mobile: make the calendar a scrollable pane so no dates get cut off */
     .cal-embed{height:80vh;min-height:0}
     .cal-embed>div{height:100%;min-height:0;overflow:auto;-webkit-overflow-scrolling:touch}
@@ -832,18 +835,22 @@
         <span class="eyebrow">Comfort of Your Home</span>
         <h3>Learn right at home<span class="gold">*</span></h3>
         <p>Prefer in-person? I bring the lessons to you — learn in the comfort of your own home, on your own instrument, at your own pace. Perfect for kids and busy schedules.</p>
-        <div class="transport-est">
-          <label for="te-addr">🚗 Estimate your transport cost</label>
-          <div class="te-row">
-            <input id="te-addr" type="text" placeholder="Enter your address or ZIP (Houston area)" />
-            <button type="button" id="te-btn" class="btn btn-gold">Estimate</button>
-          </div>
-          <div id="te-result" class="te-result"></div>
-        </div>
       </div>
     </div>
 
     <p class="foot-note"><strong>*</strong> Transport costs may be incurred for in-person home sessions depending on your location. Online sessions never include a transport charge.</p>
+    <div class="est-tile">
+      <h3>🚗 Estimate your transport cost</h3>
+      <p>Enter your address for an instant estimate on in-person home sessions.</p>
+      <div class="est-form">
+        <input class="full" id="te-street" type="text" placeholder="Street address" autocomplete="address-line1" />
+        <input id="te-city" type="text" placeholder="City" autocomplete="address-level2" />
+        <input id="te-state" type="text" value="TX" placeholder="State" autocomplete="address-level1" />
+        <input id="te-zip" type="text" placeholder="ZIP code" inputmode="numeric" autocomplete="postal-code" />
+        <button type="button" id="te-btn" class="btn btn-gold full">Estimate transport →</button>
+      </div>
+      <div id="te-result" class="te-result"></div>
+    </div>
     <p class="foot-note"><strong>Cancellation policy:</strong> please give at least 24 hours' notice to reschedule or cancel a session. Sessions cancelled with less notice — or missed without notice — may be charged in full. Makeup / rain-check sessions can be arranged where possible.</p>
   </div>
 </section>
@@ -1337,9 +1344,9 @@ Cal.ns["music-lesson"]("ui", {"theme":"dark","hideEventTypeDetails":false,"layou
   var ROAD   = 1.3;    // straight-line -> driving distance factor
 
   var btn=document.getElementById('te-btn');
-  var inp=document.getElementById('te-addr');
   var out=document.getElementById('te-result');
-  if(!btn||!inp||!out) return;
+  if(!btn||!out) return;
+  function g(id){ var e=document.getElementById(id); return e?e.value.trim():''; }
 
   function miles(a,b){
     var R=3958.8, toR=Math.PI/180;
@@ -1349,8 +1356,10 @@ Cal.ns["music-lesson"]("ui", {"theme":"dark","hideEventTypeDetails":false,"layou
     return R*2*Math.atan2(Math.sqrt(x), Math.sqrt(1-x));
   }
   function estimate(){
-    var q=inp.value.trim();
-    if(!q){ out.innerHTML='<span class="te-note">Enter your address or ZIP first.</span>'; return; }
+    var street=g('te-street'), city=g('te-city'), state=g('te-state'), zip=g('te-zip');
+    if(!street && !zip){ out.innerHTML='<span class="te-note">Enter at least your street or ZIP.</span>'; return; }
+    var q=[street,city,state].filter(Boolean).join(', ');
+    if(zip) q += (q?' ':'')+zip;
     out.innerHTML='<span class="te-note">Calculating…</span>';
     fetch('https://nominatim.openstreetmap.org/search?format=jsonv2&limit=1&countrycodes=us&q='+encodeURIComponent(q))
       .then(function(r){ return r.json(); })
@@ -1369,7 +1378,10 @@ Cal.ns["music-lesson"]("ui", {"theme":"dark","hideEventTypeDetails":false,"layou
       .catch(function(){ out.innerHTML='<span class="te-note">Network issue — please try again, or just message me your address.</span>'; });
   }
   btn.addEventListener('click', estimate);
-  inp.addEventListener('keydown', function(e){ if(e.key==='Enter'){ e.preventDefault(); estimate(); } });
+  ['te-street','te-city','te-state','te-zip'].forEach(function(id){
+    var e=document.getElementById(id);
+    if(e) e.addEventListener('keydown', function(ev){ if(ev.key==='Enter'){ ev.preventDefault(); estimate(); } });
+  });
 })();
 </script>
 </body>
