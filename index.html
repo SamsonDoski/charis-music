@@ -241,6 +241,13 @@
     background:linear-gradient(135deg,var(--gold-bright),var(--gold));color:#1a130b;font-weight:700;margin-bottom:12px}
   .sched-step b{display:block;font-size:1.05rem;margin-bottom:5px}
   .sched-step p{font-size:.9rem;color:var(--muted);margin:0}
+  /* booking option toggle */
+  .book-tabs{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin:0 auto 16px}
+  .book-tab{padding:11px 18px;border-radius:100px;border:1px solid var(--line);background:var(--card);
+    color:var(--muted);font-weight:600;font-size:.9rem;cursor:pointer;transition:.2s;font-family:inherit}
+  .book-tab:hover{border-color:var(--gold);color:var(--cream)}
+  .book-tab.active{background:linear-gradient(135deg,var(--gold-bright),var(--gold));color:#1a130b;border-color:transparent}
+  .book-note{text-align:center;color:var(--cream);max-width:640px;margin:0 auto 22px;font-size:.98rem}
   .cal-embed{position:relative;border-radius:18px;overflow:hidden;border:1px solid var(--line);background:var(--card);min-height:600px}
   .cal-embed>div{width:100%;min-height:600px}
   /* cover the "Powered by Cal.com" footer strip; pointer-events:none so clicks still pass through */
@@ -774,7 +781,7 @@
       <div class="free-text">
         <span class="free-tag">🎉 New students</span>
         <h3>Free online trial <span>· or in-person for just $10</span></h3>
-        <p>Try your very first session risk-free. Online trials are completely free; an in-person trial is a flat $10 <strong>(plus transport based on your location)</strong>.</p>
+        <p>Try your very first session. Online trials are completely free; an in-person trial is <strong>$10/hr (plus transport based on your location)</strong>.</p>
       </div>
       <a class="btn btn-gold" href="#schedule">Book a Free Trial →</a>
     </div>
@@ -824,42 +831,47 @@
   </div>
 </section>
 
-<!-- RESERVE A SLOT (scheduler + deposit) -->
+<!-- BOOK A SESSION (toggle scheduler + deposit) -->
 <section id="schedule" class="alt">
   <div class="wrap">
-    <div class="section-head" style="margin:0 auto 40px;text-align:center">
+    <div class="section-head" style="margin:0 auto 26px;text-align:center">
       <span class="eyebrow" style="justify-content:center">Start Here</span>
-      <h2>Book your free trial</h2>
-      <p style="margin:0 auto">New students start with a free online trial (or $10 in-person). Pick a time below — a slot is confirmed once your $10 deposit is received, and it applies toward your first lesson.</p>
+      <h2>Book your session</h2>
+      <p style="margin:0 auto">Choose your option below, then pick a time on the calendar.</p>
     </div>
-    <div class="sched-steps">
-      <div class="sched-step"><span class="num">1</span><b>Pick your time</b><p>Choose an open slot on the calendar below.</p></div>
-      <div class="sched-step"><span class="num">2</span><b>Send $10 deposit</b><p>Via Cash App or Zelle — add your name in the memo.</p></div>
-      <div class="sched-step"><span class="num">3</span><b>You're booked!</b><p>I'll confirm as soon as the deposit lands.</p></div>
+    <div class="book-tabs">
+      <button type="button" class="book-tab active" data-cal="charismusic/music-lesson-free-online-trial-session" data-dep="0" data-note="🎉 New students — your online trial is completely free. Just pick a time; no payment needed.">🎹 Free Online Trial</button>
+      <button type="button" class="book-tab" data-cal="charismusic/music-lesson-free-in-person-trial-session" data-dep="0" data-note="In-person trial is $10/hr plus transport based on your location. Pick a time and I'll confirm.">🏠 In-Person Trial · $10/hr</button>
+      <button type="button" class="book-tab" data-cal="charismusic/music-lesson-sessions-for-returning-student" data-dep="1" data-note="Returning students — book your regular online or in-person session. Confirmed with a $10 security deposit (send it below after picking a time).">🔁 Returning Session · $10 deposit</button>
     </div>
+    <p class="book-note" id="book-note">🎉 New students — your online trial is completely free. Just pick a time; no payment needed.</p>
     <div class="cal-embed"><div id="cal-inline"></div></div>
-    <div class="deposit-grid">
-      <div class="dep-card">
-        <div class="dep-icon">💚</div>
-        <h3>Cash App</h3>
-        <p>Tap to send your $10 deposit to <strong>$KingDoski02</strong> — add your name in the note.</p>
-        <a class="btn btn-cashapp" href="https://cash.app/$KingDoski02" target="_blank" rel="noopener">Pay $10 on Cash App →</a>
-      </div>
-      <div class="dep-card">
-        <div class="dep-icon">💳</div>
-        <h3>PayPal</h3>
-        <p>Tap to send your $10 deposit — the amount is pre-filled. Add your name in the note.</p>
-        <a class="btn btn-paypal" href="https://paypal.me/olajideolanipekun/10" target="_blank" rel="noopener">Pay $10 with PayPal →</a>
-      </div>
-      <div class="dep-card">
-        <div class="dep-icon">🏦</div>
-        <h3>Zelle</h3>
-        <p>Send your $10 deposit via Zelle in your banking app to:</p>
-        <div class="zelle-num">+1 (346) 745-1361</div>
-        <p class="dep-small">Please add your full name in the memo.</p>
+    <div id="deposit-block" style="display:none">
+      <h3 style="text-align:center;margin:34px 0 4px;font-size:1.45rem">Send your $10 security deposit to confirm</h3>
+      <p style="text-align:center;color:var(--muted);margin:0 auto 22px;font-size:.92rem;max-width:560px">Add your full name in the note so I can match it to your booking. This secures your slot.</p>
+      <div class="deposit-grid">
+        <div class="dep-card">
+          <div class="dep-icon">💚</div>
+          <h3>Cash App</h3>
+          <p>Tap to send your $10 deposit to <strong>$KingDoski02</strong> — add your name in the note.</p>
+          <a class="btn btn-cashapp" href="https://cash.app/$KingDoski02" target="_blank" rel="noopener">Pay $10 on Cash App →</a>
+        </div>
+        <div class="dep-card">
+          <div class="dep-icon">💳</div>
+          <h3>PayPal</h3>
+          <p>Tap to send your $10 deposit — the amount is pre-filled. Add your name in the note.</p>
+          <a class="btn btn-paypal" href="https://paypal.me/olajideolanipekun/10" target="_blank" rel="noopener">Pay $10 with PayPal →</a>
+        </div>
+        <div class="dep-card">
+          <div class="dep-icon">🏦</div>
+          <h3>Zelle</h3>
+          <p>Send your $10 deposit via Zelle in your banking app to:</p>
+          <div class="zelle-num">+1 (346) 745-1361</div>
+          <p class="dep-small">Please add your full name in the memo.</p>
+        </div>
       </div>
     </div>
-    <p class="foot-note" style="text-align:center;margin:22px auto 0">Your slot is confirmed once the $10 deposit is received. Free online trials don't require a deposit — just book and message me.</p>
+    <p class="foot-note" style="text-align:center;margin:22px auto 0">In-person sessions may include a transport charge based on your location. Online sessions never include a transport charge.</p>
   </div>
 </section>
 <script type="text/javascript">
@@ -867,6 +879,18 @@
 Cal("init", "music-lesson", {origin:"https://cal.com"});
 Cal.ns["music-lesson"]("inline", { elementOrSelector:"#cal-inline", config: {"layout":"month_view","theme":"dark"}, calLink: "charismusic/music-lesson-free-online-trial-session" });
 Cal.ns["music-lesson"]("ui", {"theme":"dark","hideEventTypeDetails":false,"layout":"month_view"});
+(function(){
+  var tabs=document.querySelectorAll('.book-tab');
+  var dep=document.getElementById('deposit-block');
+  var note=document.getElementById('book-note');
+  function loadCal(link){ var el=document.getElementById('cal-inline'); if(!el) return; el.innerHTML=''; Cal.ns["music-lesson"]("inline", { elementOrSelector:"#cal-inline", config:{"layout":"month_view","theme":"dark"}, calLink: link }); }
+  tabs.forEach(function(t){ t.addEventListener('click', function(){
+    tabs.forEach(function(x){ x.classList.remove('active'); }); t.classList.add('active');
+    loadCal(t.getAttribute('data-cal'));
+    if(note) note.textContent=t.getAttribute('data-note');
+    if(dep) dep.style.display = t.getAttribute('data-dep')==='1' ? 'block' : 'none';
+  }); });
+})();
 </script>
 
 <!-- INQUIRY FORM -->
