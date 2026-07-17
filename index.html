@@ -1340,7 +1340,7 @@ Cal.ns["music-lesson"]("ui", {"theme":"dark","hideEventTypeDetails":false,"layou
    Adjust these numbers to your real travel pricing: */
 (function(){
   var BASE   = {lat:29.77150342156, lng:-95.744947001995}; // 715 Park Meadow Dr, Katy, TX 77450
-  var PERMILE= 5;      // $ per driving mile, one way to you (≈ $30 for 6 miles)
+  var PERMILE= 4.5;    // $ per driving mile, one way to you
   var ROAD   = 1.3;    // straight-line -> driving distance factor
 
   var btn=document.getElementById('te-btn');
@@ -1357,7 +1357,7 @@ Cal.ns["music-lesson"]("ui", {"theme":"dark","hideEventTypeDetails":false,"layou
   }
   function showCost(driveMi){
     var nMi=Math.round(driveMi*10)/10;
-    var cost=Math.round(driveMi*PERMILE/5)*5; // nearest $5
+    var cost=Math.round(driveMi*PERMILE); // nearest dollar
     if(cost<=0){
       out.innerHTML='<span class="big">$0</span> <span class="te-note">— you’re right by me, no transport charge.</span>';
       return;
