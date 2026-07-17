@@ -126,7 +126,7 @@
   .float-badge b{font-size:.92rem}
 
   /* SECTION */
-  section{padding:84px 0}
+  section{padding:100px 0}
   .section-head{max-width:640px;margin-bottom:48px}
   .section-head .eyebrow{margin-bottom:14px}
   .section-head h2{font-size:clamp(2rem,4vw,2.9rem);margin-bottom:14px}
@@ -244,6 +244,13 @@
   .te-result .big{font-family:'Fraunces',serif;font-size:1.6rem;color:var(--gold-bright)}
   .te-note{font-size:.8rem;color:var(--muted)}
   .foot-note{font-size:.82rem;color:var(--muted);margin-top:16px;line-height:1.55;max-width:860px}
+  .details-block{border-top:1px solid var(--line);margin-top:20px}
+  .details-block summary{cursor:pointer;padding:16px 0;font-weight:600;color:var(--cream);font-size:1rem;
+    list-style:none;display:flex;align-items:center;gap:10px}
+  .details-block summary::-webkit-details-marker{display:none}
+  .details-block summary::before{content:"＋";color:var(--gold);font-weight:700;font-size:1.1rem}
+  .details-block[open] summary::before{content:"－"}
+  .details-block .details-body{padding-bottom:12px}
   .foot-note strong{color:var(--cream)}
 
   /* scheduler / reserve a slot */
@@ -517,7 +524,7 @@
         <div class="stat"><div class="n">Online</div><div class="l">&amp; in-person sessions</div></div>
       </div>
     </div>
-    <div class="hero-photo" data-spin="13">
+    <div class="hero-photo">
       <img src="images/portrait.jpg" alt="Olajide Olanipekun" onerror="this.style.display='none';this.nextElementSibling.style.display='grid'" />
       <div class="photo-fallback" style="display:none">
         <div class="big">🎷🎹🎸</div>
@@ -539,32 +546,18 @@
       <h2>One teacher, many instruments</h2>
       <p>A multi-instrumentalist with trained ears and relative pitch — lessons tailored to your instrument and your goals.</p>
     </div>
-    <div class="inst-layout">
-      <div class="chips">
-        <div class="chip"><span>🎹</span> Piano</div>
-        <div class="chip"><span>🎷</span> Alto Saxophone</div>
-        <div class="chip"><span>🎷</span> Tenor Saxophone</div>
-        <div class="chip"><span>🎷</span> Soprano Saxophone</div>
-        <div class="chip"><span>🎸</span> Lead Electric Guitar</div>
-        <div class="chip"><span>🎸</span> Bass Guitar</div>
-        <div class="chip"><span>🎸</span> Acoustic Guitar</div>
-        <div class="chip"><span>🎸</span> Semi-Acoustic Guitar</div>
-        <div class="chip"><span>🎻</span> Violin</div>
-        <div class="chip"><span>🪈</span> Recorder</div>
-        <div class="chip"><span>✨</span> & related instruments</div>
-      </div>
-      <div class="cube-stage" aria-hidden="true">
-        <div class="cube-scroll" data-spin="70">
-          <div class="cube">
-            <div class="face f1" style="background-image:url('images/IMG_3096.jpg')"></div>
-            <div class="face f2" style="background-image:url('images/IMG_3232.jpg')"></div>
-            <div class="face f3" style="background-image:url('images/IMG_4259.jpg')"></div>
-            <div class="face f4" style="background-image:url('images/IMG_3851.jpg')"></div>
-            <div class="face f5" style="background-image:url('images/IMG_1863.jpg')"></div>
-            <div class="face f6" style="background-image:url('images/WhatsApp%20Image%202026-06-27%20at%2015.50.23.jpeg')"></div>
-          </div>
-        </div>
-      </div>
+    <div class="chips">
+      <div class="chip"><span>🎹</span> Piano</div>
+      <div class="chip"><span>🎷</span> Alto Saxophone</div>
+      <div class="chip"><span>🎷</span> Tenor Saxophone</div>
+      <div class="chip"><span>🎷</span> Soprano Saxophone</div>
+      <div class="chip"><span>🎸</span> Lead Electric Guitar</div>
+      <div class="chip"><span>🎸</span> Bass Guitar</div>
+      <div class="chip"><span>🎸</span> Acoustic Guitar</div>
+      <div class="chip"><span>🎸</span> Semi-Acoustic Guitar</div>
+      <div class="chip"><span>🎻</span> Violin</div>
+      <div class="chip"><span>🪈</span> Recorder</div>
+      <div class="chip"><span>✨</span> & related instruments</div>
     </div>
   </div>
 </section>
@@ -633,12 +626,9 @@
     <div class="students-grid">
       <div class="sphoto"><img src="images/IMG_4277.jpg" alt="Student learning piano with labeled keys and a chord chart" loading="lazy"><span class="cap">🎹 First chords &amp; charts</span></div>
       <div class="sphoto"><img src="images/WhatsApp%20Image%202026-06-27%20at%2015.48.48.jpeg" alt="Young student at the piano during a home lesson" loading="lazy"><span class="cap">👦 All ages welcome</span></div>
-      <div class="sphoto"><img src="images/IMG_4278.jpg" alt="Student practicing scales on the keyboard" loading="lazy"><span class="cap">🤝 Hands-on guidance</span></div>
-      <div class="sphoto"><img src="images/IMG_2329.JPG" alt="Students practising at the music school" loading="lazy"><span class="cap">🎼 Practice sessions</span></div>
       <div class="sphoto"><img src="images/IMG_20201004_152015.jpg" alt="Group of students with saxophone and guitar" loading="lazy"><span class="cap">🎺 Group &amp; ensemble</span></div>
+      <div class="sphoto"><img src="images/guitar-suit.jpg" alt="Student playing electric guitar" loading="lazy"><span class="cap">🎸 Guitar student</span></div>
       <div class="sphoto"><img src="images/IMG_4077.JPG" alt="Young keyboardist enjoying a lesson" loading="lazy"><span class="cap">🎹 The joy of playing</span></div>
-      <div class="sphoto"><img src="images/guitar-suit.jpg" alt="Student playing electric guitar" loading="lazy"><span class="cap">🎸 Electric guitar student</span></div>
-      <div class="sphoto"><img src="images/guitar-blue.jpg" alt="Student playing a blue electric guitar" loading="lazy"><span class="cap">🎸 Guitar lessons</span></div>
       <div class="sphoto"><img src="images/certificate.jpg" alt="Graduate holding a Charis School of Music certificate of completion" loading="lazy" onerror="this.closest('.sphoto').style.display='none'"><span class="cap">🎓 Certified graduate</span></div>
     </div>
   </div>
@@ -668,19 +658,6 @@
   </div>
 </section>
 
-<!-- MOMENTS -->
-<section id="moments">
-  <div class="wrap">
-    <div class="section-head" style="margin:0 auto 36px;text-align:center">
-      <span class="eyebrow" style="justify-content:center">In Motion</span>
-      <h2 style="font-size:clamp(1.8rem,3.5vw,2.5rem)">Sights from the journey</h2>
-    </div>
-    <div class="clip-grid">
-      <div class="clip-card"><video class="reel" muted loop playsinline preload="metadata"><source src="images/IMG_9468%20-%20Trim.mp4" type="video/mp4" /></video></div>
-      <div class="clip-card"><video class="reel" muted loop playsinline preload="metadata"><source src="images/IMG_8549%20-%20Trim.mp4" type="video/mp4" /></video></div>
-    </div>
-  </div>
-</section>
 
 <!-- RESOURCES / MANUALS -->
 <section id="resources">
@@ -727,23 +704,13 @@
     </div>
     <div class="gallery">
       <div class="gphoto"><img src="images/conference.jpg" alt="Playing keyboard at the World Lifting Conference 2020" loading="lazy" onerror="this.closest('.gphoto').style.display='none'"><span class="cap">🎹 World Lifting Conf. 2020</span></div>
-      <div class="gphoto" data-spin="20"><img src="images/WhatsApp%20Image%202026-06-27%20at%2015.56.01.jpeg" alt="Saxophone ensemble performing live on stage" loading="lazy"><span class="cap">🎷 Sax Ensemble · Live</span></div>
+      <div class="gphoto"><img src="images/WhatsApp%20Image%202026-06-27%20at%2015.56.01.jpeg" alt="Saxophone ensemble performing live on stage" loading="lazy"><span class="cap">🎷 Sax Ensemble · Live</span></div>
       <div class="gphoto"><img src="images/WhatsApp%20Image%202026-06-27%20at%2015.50.23.jpeg" alt="Live duo on keys and bass guitar" loading="lazy"><span class="cap">🎶 Live Duo</span></div>
+      <div class="gphoto"><img src="images/IMG_7139.jpg" alt="Saxophone at a 50th birthday celebration" loading="lazy"><span class="cap">🎉 Birthdays &amp; Events</span></div>
       <div class="gphoto"><img src="images/IMG_3096.jpg" alt="Playing grand piano" loading="lazy"><span class="cap">🎹 Grand Piano</span></div>
-      <div class="gphoto" data-spin="20"><img src="images/IMG_4259.jpg" alt="Playing lead electric guitar" loading="lazy"><span class="cap">🎸 Electric Guitar</span></div>
+      <div class="gphoto"><img src="images/IMG_4259.jpg" alt="Playing lead electric guitar" loading="lazy"><span class="cap">🎸 Electric Guitar</span></div>
       <div class="gphoto"><img src="images/IMG_3851.jpg" alt="Playing bass guitar" loading="lazy"><span class="cap">🎸 Bass Guitar</span></div>
-      <div class="gphoto" data-spin="20"><img src="images/IMG_3232.jpg" alt="Playing saxophone" loading="lazy"><span class="cap">🎷 Saxophone</span></div>
-      <div class="gphoto"><img src="images/IMG_1863.jpg" alt="Playing a grand piano in a hall" loading="lazy"><span class="cap">🎹 Hall Session</span></div>
-      <div class="gphoto"><img src="images/WhatsApp%20Image%202026-06-27%20at%2015.47.14.jpeg" alt="Keyboard and notebook on a Sunday morning" loading="lazy"><span class="cap">☕ Sunday Mornings</span></div>
-      <div class="gphoto"><img src="images/studio.jpg" alt="Home studio with piano, organ, acoustic guitar and the Charis manuals" loading="lazy" onerror="this.closest('.gphoto').style.display='none'"><span class="cap">🎹 Home Studio</span></div>
-      <div class="gphoto"><img src="images/gallery1-4.jpg" alt="Grand piano in an atrium" loading="lazy"><span class="cap">🎹 Atrium Grand</span></div>
-      <div class="gphoto"><img src="images/gallerry1-4.jpg" alt="Saxophone performance during a live church service" loading="lazy"><span class="cap">🎷 Live Worship</span></div>
-      <div class="gphoto"><img src="images/IMG_7138.jpg" alt="Playing saxophone at a reception" loading="lazy"><span class="cap">🎷 Live at an Event</span></div>
-      <div class="gphoto"><img src="images/IMG_7139.jpg" alt="Saxophone at a 50th birthday celebration" loading="lazy"><span class="cap">🎉 Birthday Celebration</span></div>
-      <div class="gphoto"><img src="images/IMG_7165.jpg" alt="Playing keyboard at a live event" loading="lazy"><span class="cap">🎹 Event Performance</span></div>
-      <div class="gphoto"><img src="images/IMG_7139.jpg" alt="Saxophone performance at a 50th birthday celebration" loading="lazy"><span class="cap">🎷 Birthdays &amp; Events</span></div>
-      <div class="gphoto"><img src="images/IMG_7138.jpg" alt="Saxophone performance alongside a vocalist at an event" loading="lazy"><span class="cap">🎷 Live Event</span></div>
-      <div class="gphoto" data-spin="20"><img src="images/IMG_7165.jpg" alt="Playing keyboard at a live event" loading="lazy"><span class="cap">🎹 Event Keys</span></div>
+      <div class="gphoto"><img src="images/IMG_3232.jpg" alt="Playing saxophone" loading="lazy"><span class="cap">🎷 Saxophone</span></div>
     </div>
   </div>
 </section>
@@ -830,29 +797,38 @@
       </div>
     </div>
 
-    <div class="home-feature">
-      <div class="home-img"><img src="images/WhatsApp%20Image%202026-06-27%20at%2015.50.23.jpeg" alt="Learning music at home with keyboard, bass and amp" loading="lazy"></div>
-      <div class="home-text">
-        <span class="eyebrow">Comfort of Your Home</span>
-        <h3>Learn right at home<span class="gold">*</span></h3>
-        <p>Prefer in-person? I bring the lessons to you — learn in the comfort of your own home, on your own instrument, at your own pace. Perfect for kids and busy schedules.</p>
+    <details class="details-block">
+      <summary>🏠 In-person lessons, travel &amp; transport estimate</summary>
+      <div class="details-body">
+        <div class="home-feature">
+          <div class="home-img"><img src="images/WhatsApp%20Image%202026-06-27%20at%2015.50.23.jpeg" alt="Learning music at home with keyboard, bass and amp" loading="lazy"></div>
+          <div class="home-text">
+            <span class="eyebrow">Comfort of Your Home</span>
+            <h3>Learn right at home<span class="gold">*</span></h3>
+            <p>Prefer in-person? I bring the lessons to you — learn in the comfort of your own home, on your own instrument, at your own pace. Perfect for kids and busy schedules.</p>
+          </div>
+        </div>
+        <p class="foot-note"><strong>*</strong> Transport costs may be incurred for in-person home sessions depending on your location. Enrolling more than one student at the same location? You only incur <strong>one</strong> transport cost. Online sessions never include a transport charge.</p>
+        <div class="est-tile">
+          <h3>🚗 Estimate your transport cost</h3>
+          <p>Enter your address for an instant estimate on in-person home sessions.</p>
+          <div class="est-form">
+            <input class="full" id="te-street" type="text" placeholder="Street address" autocomplete="address-line1" />
+            <input id="te-city" type="text" placeholder="City" autocomplete="address-level2" />
+            <input id="te-state" type="text" value="TX" placeholder="State" autocomplete="address-level1" />
+            <input id="te-zip" type="text" placeholder="ZIP code" inputmode="numeric" autocomplete="postal-code" />
+            <button type="button" id="te-btn" class="btn btn-gold full">Estimate transport →</button>
+          </div>
+          <div id="te-result" class="te-result"></div>
+        </div>
       </div>
-    </div>
-
-    <p class="foot-note"><strong>*</strong> Transport costs may be incurred for in-person home sessions depending on your location. Enrolling more than one student at the same location? You only incur <strong>one</strong> transport cost. Online sessions never include a transport charge.</p>
-    <div class="est-tile">
-      <h3>🚗 Estimate your transport cost</h3>
-      <p>Enter your address for an instant estimate on in-person home sessions.</p>
-      <div class="est-form">
-        <input class="full" id="te-street" type="text" placeholder="Street address" autocomplete="address-line1" />
-        <input id="te-city" type="text" placeholder="City" autocomplete="address-level2" />
-        <input id="te-state" type="text" value="TX" placeholder="State" autocomplete="address-level1" />
-        <input id="te-zip" type="text" placeholder="ZIP code" inputmode="numeric" autocomplete="postal-code" />
-        <button type="button" id="te-btn" class="btn btn-gold full">Estimate transport →</button>
+    </details>
+    <details class="details-block">
+      <summary>Cancellation policy</summary>
+      <div class="details-body">
+        <p class="foot-note" style="margin-top:0">Please give at least 24 hours' notice to reschedule or cancel a session. Sessions cancelled with less notice — or missed without notice — may be charged in full. Makeup / rain-check sessions can be arranged where possible.</p>
       </div>
-      <div id="te-result" class="te-result"></div>
-    </div>
-    <p class="foot-note"><strong>Cancellation policy:</strong> please give at least 24 hours' notice to reschedule or cancel a session. Sessions cancelled with less notice — or missed without notice — may be charged in full. Makeup / rain-check sessions can be arranged where possible.</p>
+    </details>
   </div>
 </section>
 
@@ -1145,58 +1121,7 @@ Cal.ns["music-lesson"]("ui", {"theme":"dark","hideEventTypeDetails":false,"layou
   if(reduce) return;
   var coarse=matchMedia('(pointer: coarse)').matches; // touch device → skip pointer tilt
 
-  /* ---------- Ambient artistic layers: bg photo + parallax blob + notes ---------- */
-  var glyphs=['♪','♫','♬','♩','𝄞'];
-  var bgs=[
-    'images/IMG_1863.jpg',
-    'images/IMG_3096.jpg',
-    'images/IMG_3232.jpg',
-    'images/WhatsApp%20Image%202026-06-27%20at%2015.47.14.jpeg',
-    'images/IMG_2329.JPG',
-    'images/about.JPG',
-    'images/IMG_3851.jpg',
-    'images/WhatsApp%20Image%202026-06-27%20at%2015.56.01.jpeg'
-  ];
-  var decorate=['top','instruments','curriculum','students','about','moments','resources','gallery','pricing','contact'];
-  var noteSections={top:1,students:1,gallery:1,contact:1};
-  var bgImgs=[];
-  decorate.forEach(function(id,idx){
-    var sec=doc.getElementById(id); if(!sec) return;
-    var layer=doc.createElement('div'); layer.className='layer'; layer.setAttribute('aria-hidden','true');
-
-    /* scroll-reactive background photo, blended subtly into the gradients */
-    var bg=doc.createElement('div'); bg.className='bg-img';
-    bg.style.backgroundImage='url("'+(id==='about' ? 'images/studio.jpg' : bgs[idx%bgs.length])+'")';
-    bg.style.setProperty('--bgop', id==='top' ? '0.13' : (id==='about' ? '0.22' : '0.09'));
-    bg.setAttribute('data-parallax',(0.03+Math.random()*0.03).toFixed(3));
-    layer.appendChild(bg); bgImgs.push(bg);
-
-    /* gold gradient blob */
-    var blob=doc.createElement('div'); blob.className='blob';
-    blob.style.setProperty('--bx',(20+Math.random()*55)+'%');
-    blob.style.setProperty('--by',(0+Math.random()*40)+'%');
-    blob.setAttribute('data-parallax',(0.05+Math.random()*0.07).toFixed(3));
-    layer.appendChild(blob);
-
-    /* floating notes — only a few sections, kept subtle */
-    if(noteSections[id]){
-      var n=coarse?2:4;
-      for(var i=0;i<n;i++){
-        var s=doc.createElement('span'); s.className='note';
-        s.textContent=glyphs[i%glyphs.length];
-        s.style.setProperty('--x',(5+Math.random()*90)+'%');
-        s.style.setProperty('--s',(0.7+Math.random()*1.4).toFixed(2));
-        s.style.setProperty('--t',(Math.random()*16)+'s');
-        s.style.setProperty('--dur',(13+Math.random()*11)+'s');
-        layer.appendChild(s);
-      }
-    }
-    sec.insertBefore(layer,sec.firstChild);
-  });
-
-  /* fade each background photo in as its section scrolls into view */
-  var bgIO=new IntersectionObserver(function(es){ es.forEach(function(e){ e.target.classList.toggle('on', e.isIntersecting); }); },{threshold:0.14});
-  bgImgs.forEach(function(b){ bgIO.observe(b); });
+  /* Ambient background photos, blobs & floating notes removed for a calmer layout. */
 
   /* ---------- Scroll progress + parallax ---------- */
   var bar=doc.querySelector('.scroll-progress');
