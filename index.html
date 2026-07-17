@@ -1364,31 +1364,31 @@ Cal.ns["music-lesson"]("ui", {"theme":"dark","hideEventTypeDetails":false,"layou
     }
     out.innerHTML='≈ <span class="big">$'+cost+'</span> transport <span class="te-note">(about '+nMi+' driving miles each way). Exact amount confirmed before your first session.</span>';
   }
+  function geo(q){
+    return fetch('https://nominatim.openstreetmap.org/search?format=jsonv2&limit=1&countrycodes=us&q='+encodeURIComponent(q))
+      .then(function(r){ return r.json(); });
+  }
+  function routeShow(client){
+    /* real driving distance via OSRM; fall back to straight-line × 1.3 if routing is unavailable */
+    fetch('https://router.project-osrm.org/route/v1/driving/'+BASE.lng+','+BASE.lat+';'+client.lng+','+client.lat+'?overview=false')
+      .then(function(r){ return r.json(); })
+      .then(function(rt){ showCost(rt && rt.routes && rt.routes.length ? rt.routes[0].distance/1609.34 : miles(BASE, client)*ROAD); })
+      .catch(function(){ showCost(miles(BASE, client)*ROAD); });
+  }
   function estimate(){
     var street=g('te-street'), city=g('te-city'), state=g('te-state'), zip=g('te-zip');
     if(!street && !zip){ out.innerHTML='<span class="te-note">Enter at least your street or ZIP.</span>'; return; }
     out.innerHTML='<span class="te-note">Calculating…</span>';
-    /* structured geocoding = exact address match */
-    var p=['format=jsonv2','limit=1','countrycodes=us'];
-    if(street) p.push('street='+encodeURIComponent(street));
-    if(city)   p.push('city='+encodeURIComponent(city));
-    if(state)  p.push('state='+encodeURIComponent(state));
-    if(zip)    p.push('postalcode='+encodeURIComponent(zip));
-    fetch('https://nominatim.openstreetmap.org/search?'+p.join('&'))
-      .then(function(r){ return r.json(); })
-      .then(function(d){
-        if(!d || !d.length){ out.innerHTML='<span class="te-note">Couldn’t find that address — double-check the street name and ZIP.</span>'; return; }
-        var client={lat:parseFloat(d[0].lat), lng:parseFloat(d[0].lon)};
-        /* real driving distance via OSRM; fall back to straight-line × 1.3 */
-        fetch('https://router.project-osrm.org/route/v1/driving/'+BASE.lng+','+BASE.lat+';'+client.lng+','+client.lat+'?overview=false')
-          .then(function(r){ return r.json(); })
-          .then(function(rt){
-            if(rt && rt.routes && rt.routes.length){ showCost(rt.routes[0].distance/1609.34); }
-            else { showCost(miles(BASE, client)*ROAD); }
-          })
-          .catch(function(){ showCost(miles(BASE, client)*ROAD); });
-      })
-      .catch(function(){ out.innerHTML='<span class="te-note">Network issue — please try again, or just message me your address.</span>'; });
+    var full=[street,city,state].filter(Boolean).join(', ');
+    if(zip) full += (full?' ':'')+zip;
+    geo(full).then(function(d){
+      if(d && d.length) return d;                                   // exact address found
+      var fb = zip || [city,state].filter(Boolean).join(', ');      // else fall back to ZIP / city
+      return fb ? geo(fb) : [];
+    }).then(function(d){
+      if(!d || !d.length){ out.innerHTML='<span class="te-note">Couldn’t find that — please check your ZIP code.</span>'; return; }
+      routeShow({lat:parseFloat(d[0].lat), lng:parseFloat(d[0].lon)});
+    }).catch(function(){ out.innerHTML='<span class="te-note">Network issue — please try again, or just message me your address.</span>'; });
   }
   btn.addEventListener('click', estimate);
   ['te-street','te-city','te-state','te-zip'].forEach(function(id){
